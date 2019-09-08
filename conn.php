@@ -1,10 +1,10 @@
 <?php	
     header("Access-Control-Allow-Origin:*");
 //连接数据库
-	$servername = "127.0.0.1:3306";
-	$username = "root";
+	$servername = "192.168.0.133:3306";
+	$username = "admin";
 	$password = "123456";
-	$dbname = "jmmes";	
+	$dbname = "mj_dorm";	
 	$conn = new mysqli($servername, $username, $password, $dbname);	
 	if ($conn->connect_error) {
 		die("Connection failed: " . $conn->connect_error);
