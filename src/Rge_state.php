@@ -3,13 +3,15 @@
 	header("Access-Control-Allow-Origin: *");
 	// 允许任意域名发起的跨域请求
 	$ret_data = '';
-	$username = isset($_POST["username"])?$_POST["username"] : '';
+	$account = isset($_POST["account"])?$_POST["account"] : '';
 	
-	$sql = "SELECT state FROM cw_ge_students where account='".$username."'";
+	$sql = "SELECT * FROM cw_ge_students where number='".$account."'";
 	$res = $conn->query($sql);
 	if ($res -> num_rows > 0) {
 		while($row = $res -> fetch_assoc()){
 			$ret_data["data"]["state"] = $row["state"];
+			$ret_data["data"]["cardId"] = $row["cardId"];
+			$ret_data["data"]["account"] = $row["account"];
 		}
 		$ret_data["success"] = 'success';
 	}
