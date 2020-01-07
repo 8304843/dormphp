@@ -20,8 +20,18 @@ switch($flag) {
 				$ret_data["data"][$i]["number"] = $row["number"];
 				$ret_data["data"][$i]["college"] = $row["college"];
 				$ret_data["data"][$i]["class"] = $row["class"];
+				$ret_data["data"][$i]["dorm_floor"] = $row["dorm_floor"];
 				$ret_data["data"][$i]["dorm_num"] = $row["dorm_num"];
-				$ret_data["data"][$i]["rge_time"] = $row["rge_time"];
+				$ret_data["data"][$i]["rge_time"] = $row["rge_time"];	
+				$ret_data["data"][$i]["account"] = $row["account"];
+				$ret_data["data"][$i]["password"] = $row["password"];
+				$ret_data["data"][$i]["sex"] = $row["sex"];
+				$ret_data["data"][$i]["cardId"] = $row["cardId"];
+				$ret_data["data"][$i]["major"] = $row["major"];
+				$ret_data["data"][$i]["email"] = $row["email"];
+				$ret_data["data"][$i]["phone"] = $row["phone"];
+				$ret_data["data"][$i]["FACE_URL"] = $row["FACE_URL"];
+				$ret_data["data"][$i]["natives"] = $row["natives"];
 				$i++;
 			}
 			$ret_data["success"] = 'success';
@@ -34,7 +44,7 @@ switch($flag) {
 	case 'delete_info':
 		$sql = "SELECT level FROM cw_students_info where account='".$account."' ";
 		$result_Sel = $conn->query($sql)->fetch_assoc();
-		$ret= $result_Sel['level'];
+		$ret= $result_Sel['level'];//获取权限等级
 		if($ret){
 //			从cw_ge_students删除
 			$sql = "DELETE  FROM cw_ge_students where cardId='".$cardId."' ";
@@ -42,6 +52,20 @@ switch($flag) {
 			//从cw_fa_face删除
 			$sqli = "DELETE  FROM cw_fa_face  where CARD_ID='".$cardId."' ";
 			$resi = $conn -> query($sqli);
+			$ret_data["success"] = 'success';
+		}else{
+			$ret_data["success"] = 'error';
+		}
+		$conn -> close();
+		$json = json_encode($ret_data);
+		echo $json;
+		break;
+	//编辑学生信息
+	case 'edit_info':
+		$sql = "SELECT level FROM cw_students_info where account='".$account."' ";
+		$result_Sel = $conn->query($sql)->fetch_assoc();
+		$ret= $result_Sel['level'];//获取权限等级
+		if($ret){
 			$ret_data["success"] = 'success';
 		}else{
 			$ret_data["success"] = 'error';
