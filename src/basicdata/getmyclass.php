@@ -15,12 +15,12 @@ if($flag=='classNum'){
 	$json = json_encode($data);
 	echo $json;
 }else if($flag=='classMes'){
-	$sql="SELECT distinct class,username FROM `cw_record_late`";
+	$sql="SELECT distinct class FROM `cw_record_late`";
 	$result=$conn->query($sql);
 	$data='';
 	if($result->num_rows>0){
 		while($row=$result->fetch_assoc()){
-			$data=$data.'{"class":"'.$row['class'].'","username":"'.$row['username'].'"}'.',';
+			$data=$data.'{"class":"'.$row['class'].'"}'.',';
 		}
 		$jsonResult='success';
 	}else{

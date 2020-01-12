@@ -11,7 +11,7 @@ $i=0;
 	$sql="SELECT  sex,dorm_floor,dorm_num,left(from_unixtime(left(CREATE_TIME,10)),19) CREATE_TIME FROM `cw_record_late` where username='$username' and
 	(DATE_FORMAT(FROM_UNIXTIME(LEFT(CREATE_TIME,10)), '%H:%i:%S') BETWEEN '$startTime' AND '24:00:00'
 	or
-		DATE_FORMAT(FROM_UNIXTIME(LEFT(CREATE_TIME,10)), '%H:%i:%S') BETWEEN '00:00:00' AND '05:30:00')";
+		DATE_FORMAT(FROM_UNIXTIME(LEFT(CREATE_TIME,10)), '%H:%i:%S') BETWEEN '00:00:00' AND '06:30:00')";
 	$result=$conn->query($sql);
 	$data='';
 	if($result->num_rows>0){
